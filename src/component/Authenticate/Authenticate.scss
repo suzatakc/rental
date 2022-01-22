@@ -1,0 +1,37 @@
+@import "../../styles/variable";
+@import "../../styles/mixin.scss";
+
+.authenticate {
+    background-image: url("../../assets/image/bckground.png");
+    height: 100%;
+
+    .sign-block {
+        padding: calc(100% - 97%) 0;
+
+        .first-block {
+            .title {
+                margin-bottom: 30px;
+            }
+
+            .input-box {
+                margin-bottom: 24px;
+            }
+        }
+
+        .gap {
+            padding: 28px 0;
+        }
+    }
+}
+
+.sign-up-block {
+    .sign-block {
+        .first-block {
+
+            .title,
+            .input-box {
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
