@@ -1,0 +1,46 @@
+@import "../../../styles/variable";
+@import "../../../styles/mixin.scss";
+
+.second-block {
+    .section-gap {
+        padding: 0 60px;
+
+        .title-section {
+
+            .block-text,
+            p {
+                margin: 0;
+            }
+
+            .block-text {
+                font-weight: 600;
+            }
+
+            .medium-content {
+                color: $accent-place;
+                text-transform: capitalize;
+            }
+
+            .small-content {
+                color: $semantic-gray;
+                margin-top: 8px;
+            }
+        }
+
+        .image-b {
+            margin: 24px 0;
+
+            .icons-box {
+                height: 50px;
+                width: 50px;
+                object-fit: contain;
+                margin-right: 24px;
+            }
+
+            span {
+                font-size: 16px;
+                letter-spacing: .75px;
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@mixin d-flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin d-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin d-space-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin d-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin d-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin font {
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: .25px;
+}
