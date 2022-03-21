@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { UserForm } from "../UserForm/UserForm";
+import React, { useContext, useState } from "react";
+import { PopupContext } from "../Context/PopupContext";
+import { PopUp } from "../PopUp/PopUp";
 import "./BikeDetailPage.scss";
 
 export const BikesDetailsPage = () => {
@@ -149,6 +150,8 @@ export const BikesDetailsPage = () => {
       kg: "180",
     },
   ]);
+
+  const { openModal, isModalOpen } = useContext(PopupContext);
   return (
     <div className="bike-details-section section-top">
       <div className="container">
@@ -171,30 +174,13 @@ export const BikesDetailsPage = () => {
                   <div className="rent-btn d-end">
                     <button
                       type="button"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
                       className="main-btn"
+                      onClick={openModal}
                     >
                       Rent Now
                     </button>
-                    <div
-                      class="modal fade"
-                      id="exampleModal"
-                      tabindex="-1"
-                      role="dialog"
-                      aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                            {" "}
-                            <UserForm />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
+                  <PopUp />
                 </div>
               </div>
             );

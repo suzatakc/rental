@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./UserForm.scss";
 import * as Yup from "yup";
+import { PopupContext } from "../Context/PopupContext";
 
 export const UserForm = () => {
   const [isCheck, setIsCheck] = useState(true);
@@ -9,6 +10,8 @@ export const UserForm = () => {
   useEffect(() => {
     setIsCheck();
   }, []);
+
+  const { closeModal } = useContext(PopupContext);
 
   return (
     <Formik
@@ -77,12 +80,7 @@ export const UserForm = () => {
           <div className="custom-card">
             <div className="d-space-between">
               <h3 className="main-title">Rent Form</h3>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
+              <button onClick={closeModal} type="button" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -203,7 +201,12 @@ export const UserForm = () => {
             </div>
             <div className="clearfix"></div>
             <div className="d-end">
-              <button type="button" class="secondary-btn" data-dismiss="modal">
+              <button
+                type="button"
+                class="secondary-btn"
+                data-dismiss="modal"
+                onClick={closeModal}
+              >
                 Close
               </button>
 
