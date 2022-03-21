@@ -4,6 +4,7 @@ import "../src/styles/main.scss";
 import { SignUp } from "./component/Authenticate/SignUp/SignUp";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./component/Home/Home";
+import { BikesDetailsPage } from "./component/BikeDetailPage/BikeDetailPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/bikes" element={<BikesDetailsPage />} />
         </Routes>
       </BrowserRouter>
     </>

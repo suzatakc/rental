@@ -41,7 +41,7 @@ export const SecondBlock = () => {
             src={require("../../../assets/image/hiking.png")}
             alt="visit"
           />
-          <span>Visit more places</span>
+          <span>Safe Travels</span>
         </div>
       </div>
     </div>

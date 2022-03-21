@@ -1,0 +1,16 @@
+@import "../../styles/mixin";
+@import "../../styles/variable";
+
+.field-content {
+    .custom-card {
+        .input-box {
+            margin-bottom: 10px;
+        }
+    }
+
+    .d-end {
+        .main-btn {
+            margin-left: 10px;
+        }
+    }
+}

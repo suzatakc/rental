@@ -1,5 +1,6 @@
 import "./Header.scss";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 export const SmallHeader = (props) => {
@@ -18,16 +19,14 @@ export const SmallHeader = (props) => {
             <>
               <p className="content text-acct">Don't have an accout?</p>
               <p className="content sign-up">
-                Sign Up!!
-                {/* <Link to="/sign-up">Sign Up!!</Link> */}
+                <Link to="/sign-up">Sign Up!!</Link>
               </p>
             </>
           ) : type === "signUp" ? (
             <>
               <p className="content text-acct">Already have an accout?</p>
               <p className="content sign-up">
-                Sign In!!
-                {/* <Link to="/sign-in">Sign In!!</Link> */}
+                <Link to="/sign-in">Sign In!!</Link>
               </p>
             </>
           ) : (

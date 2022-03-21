@@ -1,0 +1,40 @@
+@import "../../styles/variable";
+@import "../../styles/mixin.scss";
+
+.nav-bar {
+    .navbar {
+        padding: .5rem 40px;
+        background-color: $white;
+        box-shadow: 0 1px 3px rgb(0 0 0/ 0.15);
+
+        .logo-img {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+        }
+
+        .navbar-collapse {
+            .navbar-nav {
+                .nav-item {
+                    .nav-link {
+                        margin: 0 15px;
+                    }
+                }
+            }
+        }
+
+        .user-info {
+            background-color: $pre-green;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+
+            img {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
+}

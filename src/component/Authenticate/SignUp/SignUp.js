@@ -32,7 +32,7 @@ export const SignUp = () => {
                           className="input-field"
                           type="number"
                           name="contact"
-                          placeholder="Enter your contact number"
+                          placeholder="Econtainernter your contact number"
                         />
                       </label>
                     </div> */}

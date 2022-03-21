@@ -1,0 +1,29 @@
+@import "../../styles/mixin";
+@import "../../styles/variable";
+
+.bike-details-section {
+    .custom-card {
+        margin-bottom: 30px;
+
+        .bike-img {
+            @include d-center;
+            border-bottom: 1px solid $accent-10-blue;
+            margin-bottom: 8px;
+
+            img {
+                width: 250px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 5px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .rent-btn {
+            .modal-content {
+                background-color: transparent;
+                border: 0;
+            }
+        }
+    }
+}

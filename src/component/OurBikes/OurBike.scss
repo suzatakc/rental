@@ -1,0 +1,62 @@
+@import "../../styles/mixin";
+@import "../../styles/variable";
+
+.our-bikes-sections {
+    padding-bottom: 60px;
+
+    a {
+        text-decoration: none;
+    }
+
+    .title-block {
+        @include d-center;
+        flex-direction: column;
+        margin-bottom: 60px;
+
+        .main-title {
+            font-size: 2rem;
+        }
+
+        .title-line {
+            left: -75px;
+        }
+    }
+
+    .slick-next:before,
+    .slick-prev:before {
+        color: #565555;
+        border-radius: 50%;
+        padding: 0px;
+        font-weight: 200;
+        font-size: 22px;
+    }
+
+    .slick-next {
+        right: -3px;
+    }
+
+    .slick-prev {
+        left: -5px;
+        z-index: 2;
+    }
+
+    .custom-card {
+        max-width: 352px;
+        margin: 10px;
+
+        .bike-image {
+            @include d-center;
+
+            img {
+                width: 250px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+        }
+
+        .bike-details {
+            padding-top: 20px;
+        }
+    }
+}
