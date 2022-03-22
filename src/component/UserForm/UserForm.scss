@@ -5,6 +5,20 @@
     .custom-card {
         margin-bottom: 0;
 
+        .d-space-between {
+            .close {
+                outline: none;
+                background-color: transparent;
+                border: 0;
+                font-size: 25px;
+                color: $pastel-blue;
+
+                &:hover {
+                    color: $semantic-gray;
+                }
+            }
+        }
+
         .input-box {
             margin-bottom: 10px;
         }

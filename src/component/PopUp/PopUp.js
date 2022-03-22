@@ -5,14 +5,20 @@ import { UserForm } from "../UserForm/UserForm";
 import "./PopUp.scss";
 
 export const PopUp = () => {
-  const { isModalOpen, closeModal, setIsModalOpen } = useContext(PopupContext);
+  const { isModalOpen, closeModal } = useContext(PopupContext);
   return (
     <div className="pop-up-section">
       <Modal
-        style={{ height: "auto" }}
+        style={{
+          content: {
+            border: 0,
+            background: "white",
+            overflow: "auto",
+            WebkitOverflowScrolling: "touch",
+          },
+        }}
         isOpen={isModalOpen}
         onRequestClose={closeModal}
-        contentLabel="Example Modal"
       >
         <UserForm />
       </Modal>

@@ -2,6 +2,29 @@
 @import "../../styles/variable";
 
 .bike-details-section {
+    .search-bar {
+        margin-bottom: 20px;
+
+        .input-box {
+            .search-icon {
+                position: relative;
+
+                .eye-glass {
+                    position: absolute;
+                    font-size: 14px;
+                    padding: 8px;
+                    left: 6px;
+                    top: 2px;
+                    color: $semantic-gray;
+                }
+            }
+
+            .input-field {
+                padding-left: 40px;
+            }
+        }
+    }
+
     .custom-card {
         margin-bottom: 30px;
 

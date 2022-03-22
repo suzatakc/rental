@@ -3,8 +3,10 @@ import React, { useState, useEffect, useContext } from "react";
 import "./UserForm.scss";
 import * as Yup from "yup";
 import { PopupContext } from "../Context/PopupContext";
+import { ToasterContext } from "../Context/ToasterContext";
 
 export const UserForm = () => {
+  const { successMessage, errorMessage } = useContext(ToasterContext);
   const [isCheck, setIsCheck] = useState(true);
 
   useEffect(() => {
@@ -50,9 +52,10 @@ export const UserForm = () => {
         postData.append("user_detail[liscense]", values.liscense);
         postData.append("user_detail[bike]", values.bike);
 
-        // FormDetails(postData).then((res) => {
+        // Contactus(postData).then((res) => {
         //   if (res.data.status === 200) {
-        //     success("Form submitted successfully !");
+        //     successMessage("Form submitted successfully !");
+
         //     setIsCheck(true);
         //     setTimeout(() => {
         //       setIsCheck(false);
@@ -60,12 +63,10 @@ export const UserForm = () => {
         //     resetForm({
         //       values: {
         //         name: "",
-        //         email: "",
+        //         address: "",
         //         contact: "",
-        //         citizen: "",
-        //         liscense: "",
-        //         bike: "",
-        //         rent: "",
+        //         email: "",
+        //         message: "",
         //       },
         //     });
         //   } else {
@@ -80,7 +81,12 @@ export const UserForm = () => {
           <div className="custom-card">
             <div className="d-space-between">
               <h3 className="main-title">Rent Form</h3>
-              <button onClick={closeModal} type="button" aria-label="Close">
+              <button
+                onClick={closeModal}
+                type="button"
+                className="close"
+                aria-label="Close"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>

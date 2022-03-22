@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import React, { useContext, useState } from "react";
 import { PopupContext } from "../Context/PopupContext";
 import { PopUp } from "../PopUp/PopUp";
@@ -151,10 +152,25 @@ export const BikesDetailsPage = () => {
     },
   ]);
 
-  const { openModal, isModalOpen } = useContext(PopupContext);
+  const { openModal } = useContext(PopupContext);
   return (
     <div className="bike-details-section section-top">
       <div className="container">
+        <div className="search-bar">
+          <div className="input-box">
+            <label className="d-column">
+              <div className="search-icon">
+                <i class="bi bi-search eye-glass"></i>
+              </div>
+              <input
+                name="name"
+                type="search"
+                placeholder="Search here"
+                className="input-field"
+              />
+            </label>
+          </div>
+        </div>
         <div className="row">
           {bikesDetails.map((item, index) => {
             return (
