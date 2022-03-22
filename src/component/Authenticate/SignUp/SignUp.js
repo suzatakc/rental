@@ -5,6 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useContext, useState } from "react";
 import { ToasterContext } from "../../Context/ToasterContext";
+import { CustomerData } from "../../Api/PostApi";
 
 export const SignUp = () => {
   const { successMessage, errorMessage } = useContext(ToasterContext);
@@ -21,54 +22,54 @@ export const SignUp = () => {
                   <div className="first-block">
                     <Formik
                       initialValues={{
-                        name: "",
+                        // name: "",
+                        // password: "",
                         email: "",
-                        password: "",
+                        balance: "",
                       }}
                       validationSchema={Yup.object({
-                        name: Yup.string().required("Required!!"),
-                        password: Yup.string().required("Required!!"),
-
+                        // name: Yup.string().required("Required!!"),
+                        // password: Yup.string().required("Required!!"),
+                        balance: Yup.string().required("Required!!"),
                         email: Yup.string()
                           .email("Invalid email addresss")
                           .required("Required!!"),
                       })}
                       onSubmit={(values, { setSubmitting, resetForm }) => {
                         const postData = new FormData();
-                        postData.append(
-                          "user_detail[password]",
-                          values.password
-                        );
-                        postData.append("user_detail[name]", values.name);
-                        postData.append("user_detail[email]", values.email);
+                        postData["email"] = values.email;
 
-                        // Contactus(postData).then((res) => {
-                        //   if (res.data.status === 200) {
-                        //     successMessage("Form submitted successfully !");
+                        postData["balance"] = values.balance;
 
-                        //     setIsCheck(true);
-                        //     setTimeout(() => {
-                        //       setIsCheck(false);
-                        //     }, 5000);
-                        //     resetForm({
-                        //       values: {
-                        //         name: "",
-                        //         address: "",
-                        //         contact: "",
-                        //         email: "",
-                        //         message: "",
-                        //       },
-                        //     });
-                        //   } else {
-                        //     errorMessage(res.data.message);
-                        //   }
-                        // });
+                        CustomerData(postData).then((res) => {
+                          debugger;
+                          if (res.data.status === 200) {
+                            debugger;
+                            successMessage("Form submitted successfully !");
+
+                            setIsCheck(true);
+                            setTimeout(() => {
+                              setIsCheck(false);
+                            }, 5000);
+                            resetForm({
+                              values: {
+                                // name: "",
+                                // password: "",
+                                email: "",
+                                balance: "",
+                              },
+                            });
+                          } else {
+                            errorMessage(res.data.message);
+                          }
+                          errorMessage("request failed");
+                        });
                         setSubmitting(false);
                       }}
                     >
                       <Form>
                         <h3 className="title">Sign Up</h3>
-                        <div className="input-box">
+                        {/* <div className="input-box">
                           <label className="d-column">
                             <span className="label-text">User name:</span>
                             <Field
@@ -81,7 +82,7 @@ export const SignUp = () => {
                               <ErrorMessage name="name" />
                             </span>
                           </label>
-                        </div>
+                        </div> */}
                         <div className="input-box">
                           <label className="d-column">
                             <span className="label-text">Email address:</span>
@@ -98,6 +99,22 @@ export const SignUp = () => {
                         </div>
                         <div className="input-box">
                           <label className="d-column">
+                            <span className="label-text">Balance:</span>
+                            <Field
+                              className="input-field"
+                              pattern="^[0-9]*$"
+                              maxLength="10"
+                              type="number"
+                              name="balance"
+                              placeholder="Enter your balance"
+                            />
+                            <span className="error">
+                              <ErrorMessage name="balance" />
+                            </span>
+                          </label>
+                        </div>
+                        {/* <div className="input-box">
+                          <label className="d-column">
                             <span className="label-text">Password:</span>
                             <Field
                               className="input-field"
@@ -109,20 +126,8 @@ export const SignUp = () => {
                               <ErrorMessage name="password" />
                             </span>
                           </label>
-                        </div>
-                        {/* <div className="input-box">
-                          <label className="d-column">
-                            <span className="label-text">
-                              Confirm password:
-                            </span>
-                            <input
-                              className="input-field"
-                              type="password"
-                              name="email"
-                              placeholder="Enter password"
-                            />
-                          </label>
                         </div> */}
+
                         <div className="d-end button-gap">
                           <button
                             type="submit"

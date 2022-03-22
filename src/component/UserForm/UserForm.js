@@ -25,6 +25,10 @@ export const UserForm = () => {
         liscense: "",
         bike: "",
         rent: "",
+        pick: "",
+        drop: "",
+        days: "",
+        travel: "",
       }}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -42,6 +46,12 @@ export const UserForm = () => {
         citizen: Yup.number().required("Required!!"),
         liscense: Yup.number().required("Required!!"),
         bike: Yup.string().required("Required!!"),
+        pick: Yup.string().required("Required!!"),
+        drop: Yup.string().required("Required!!"),
+        days: Yup.string()
+          .min(1, "Must be 1 characters")
+          .required("Required!!"),
+        travel: Yup.string().required("Required!!"),
       })}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         const postData = new FormData();
@@ -128,7 +138,7 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Email:</span>
                     <Field
-                      name="name"
+                      name="email"
                       type="text"
                       placeholder="Enter your email"
                       className="input-field"
@@ -173,6 +183,36 @@ export const UserForm = () => {
                     </span>
                   </label>
                 </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Pick up time :</span>
+                    <Field
+                      name="pickup"
+                      type="time"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="pickup" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">No of days :</span>
+                    <Field
+                      pattern="^[0-9]*$"
+                      maxLength="2"
+                      name="days"
+                      type="number"
+                      placeholder="Enter number of days for rent"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="days" />
+                    </span>
+                  </label>
+                </div>
                 <div className="form-group">
                   <div className="d-flex">
                     <div className="check-box">
@@ -200,6 +240,34 @@ export const UserForm = () => {
                     />
                     <span className="error">
                       <ErrorMessage name="bike" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Drop-off-time :</span>
+                    <Field
+                      name="drop-of"
+                      type="time"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="drop-of" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Travel date :</span>
+                    <Field
+                      name="travel"
+                      type="date"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="travel" />
                     </span>
                   </label>
                 </div>

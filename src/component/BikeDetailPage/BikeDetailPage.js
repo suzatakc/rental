@@ -7,7 +7,7 @@ import "./BikeDetailPage.scss";
 export const BikesDetailsPage = () => {
   const [bikesDetails] = useState([
     {
-      name: "Honda Activa",
+      name: "Honda Hiness",
       no: "Ba Kha 1234",
       url: require("../../assets/image/honda.jpeg"),
       cc: "360",

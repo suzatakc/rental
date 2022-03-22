@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //set your dev url here so that you dont have to change them in production every time
-export const domain = "";
+export const domain = "https://localhost:3306/Bike_Booking";
 
 const instance = axios.create({
   baseURL: domain + "/api/",
