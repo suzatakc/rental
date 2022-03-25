@@ -1,14 +1,24 @@
 import { SmallHeader } from "../../Header/SmallHeader";
-import { SecondBlock } from "../SecondBlock/SecondBlock";
 import "../../Authenticate/Authenticate.scss";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ToasterContext } from "../../Context/ToasterContext";
+import { SignInData } from "../../Api/PostApi";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
-  const { successMessage, errorMessage } = useContext(ToasterContext);
-  const [isCheck, setIsCheck] = useState(true);
+  const { errorMessage } = useContext(ToasterContext);
+  let history = useNavigate();
+
+  const checkIsAdmin = (data) => {
+    const splitedData = data.split(",");
+    if (splitedData[1] === "true") {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <>
       <div className="authenticate">
@@ -16,114 +26,98 @@ export const SignIn = () => {
         <div className="container">
           <div className="sign-block">
             <div className="container">
-              <div className="row">
-                <div className="col-md-7 col-lg-6 col-sm-12">
-                  <div className="first-block gap">
-                    <Formik
-                      initialValues={{
-                        email: "",
-                        password: "",
-                      }}
-                      validationSchema={Yup.object({
-                        password: Yup.string().required("Required!!"),
+              <div className="first-block gap">
+                <Formik
+                  initialValues={{
+                    email: "",
+                    password: "",
+                    is_admin: "",
+                  }}
+                  validationSchema={Yup.object({
+                    password: Yup.string().required("Required!!"),
 
-                        email: Yup.string()
-                          .email("Invalid email addresss")
-                          .required("Required!!"),
-                      })}
-                      onSubmit={(values, { setSubmitting, resetForm }) => {
-                        const postData = new FormData();
-                        postData.append(
-                          "user_detail[password]",
-                          values.password
-                        );
-                        postData.append("user_detail[email]", values.email);
+                    email: Yup.string()
+                      .email("Invalid email addresss")
+                      .required("Required!!"),
+                  })}
+                  onSubmit={(values, { setSubmitting, resetForm }) => {
+                    console.log("onsubmit");
+                    SignInData({
+                      email: values.email,
+                      password: values.password,
+                      is_admin: values.is_admin,
+                    }).then((res) => {
+                      alert(res.data);
+                      const isAdmin = checkIsAdmin(res.data);
+                      if (isAdmin) {
+                        history("/");
+                      } else {
+                        history("/home");
+                      }
 
-                        //   Contactus(postData).then((res) => {
-                        //     if (res.data.status === 200) {
-                        //       successMessage("Form submitted successfully !");
-
-                        //       setIsCheck(true);
-                        //       setTimeout(() => {
-                        //         setIsCheck(false);
-                        //       }, 5000);
-                        //       resetForm({
-                        //         values: {
-                        //           name: "",
-                        //           address: "",
-                        //           contact: "",
-                        //           email: "",
-                        //           message: "",
-                        //         },
-                        //       });
-                        //     } else {
-                        //       errorMessage(res.data.message);
-                        //     }
-                        //   });
-                        //   setSubmitting(false);
-                      }}
-                    >
-                      <Form>
-                        <h3 className="title">Sign In</h3>
-                        <div className="input-box">
-                          <label className="d-column">
-                            <span className="label-text">Email:</span>
-                            <Field
-                              className="input-field"
-                              type="text"
-                              name="email"
-                              placeholder="Enter your email"
-                            />
-                            <span className="error">
-                              <ErrorMessage name="email" />
-                            </span>
-                          </label>
-                        </div>
-                        <div className="input-box">
-                          <label className="d-column">
-                            <span className="label-text">Password:</span>
-                            <Field
-                              className="input-field"
-                              type="password"
-                              name="password"
-                              placeholder="Enter your password"
-                            />
-                            <span className="error">
-                              <ErrorMessage name="password" />
-                            </span>
-                          </label>
-                        </div>
-                        <div className="d-space-between">
-                          <div className="check-box">
-                            <label>
-                              <Field
-                                type="checkbox"
-                                name="radio"
-                                value="Remember me"
-                              />
-                              <div className="custom-check"></div>
-                              <span className="content"> Remember me</span>
-                            </label>
-                          </div>
-                          <div className="content">Forgot Password?</div>
-                        </div>
-                        <div className="d-end button-gap">
-                          <button
-                            disabled={isCheck}
-                            type="submit"
-                            value="submit"
-                            className="btn main-btn"
-                          >
-                            Sign In
-                          </button>
-                        </div>
-                      </Form>
-                    </Formik>
-                  </div>
-                </div>
-                <div className="col-md-5 col-lg-6 col-sm-12">
-                  <SecondBlock />
-                </div>
+                      errorMessage("request failed");
+                    });
+                    setSubmitting(false);
+                  }}
+                >
+                  <Form>
+                    <h3 className="title">Sign In</h3>
+                    <div className="input-box">
+                      <label className="d-column">
+                        <span className="label-text">Email:</span>
+                        <Field
+                          className="input-field"
+                          type="text"
+                          name="email"
+                          placeholder="Enter your email"
+                        />
+                        <span className="error">
+                          <ErrorMessage name="email" />
+                        </span>
+                      </label>
+                    </div>
+                    <div className="input-box">
+                      <label className="d-column">
+                        <span className="label-text">Password:</span>
+                        <Field
+                          className="input-field"
+                          type="password"
+                          name="password"
+                          placeholder="Enter your password"
+                        />
+                        <span className="error">
+                          <ErrorMessage name="password" />
+                        </span>
+                      </label>
+                    </div>
+                    <div className="d-end">
+                      {/* <div className="check-box">
+                        <label>
+                          <Field
+                            type="checkbox"
+                            name="is_admin"
+                            // value="Remember me"
+                          />
+                          <div className="custom-check"></div>
+                          <span className="content"> Is Admin</span>
+                          <span className="error">
+                            <ErrorMessage name="is_admin" />
+                          </span>
+                        </label>
+                      </div> */}
+                      <div className="content">Forgot Password?</div>
+                    </div>
+                    <div className="d-end button-gap">
+                      <button
+                        type="submit"
+                        value="submit"
+                        className="btn main-btn"
+                      >
+                        Sign In
+                      </button>
+                    </div>
+                  </Form>
+                </Formik>
               </div>
             </div>
           </div>

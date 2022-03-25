@@ -1,3 +1,4 @@
+import { SecondBlock } from "../Authenticate/SecondBlock/SecondBlock";
 import "./Features.scss";
 
 export const Features = () => {
@@ -6,7 +7,7 @@ export const Features = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6 col-lg-6">
-            <h1 className="main-title">
+            <h1 className="main-title mt-20   ">
               Hello! We Are Bike
               <span className="card-block"> Rental Shop.</span>
             </h1>
@@ -22,7 +23,9 @@ export const Features = () => {
               </p>
             </div>
           </div>
-          <div className="col-md-6 col-lg-6"></div>
+          <div className="col-md-6 col-lg-6">
+            <SecondBlock />
+          </div>
         </div>
       </div>
     </div>

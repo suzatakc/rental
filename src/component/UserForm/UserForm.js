@@ -4,6 +4,7 @@ import "./UserForm.scss";
 import * as Yup from "yup";
 import { PopupContext } from "../Context/PopupContext";
 import { ToasterContext } from "../Context/ToasterContext";
+import { UserData } from "../Api/PostApi";
 
 export const UserForm = () => {
   const { successMessage, errorMessage } = useContext(ToasterContext);
@@ -20,69 +21,79 @@ export const UserForm = () => {
       initialValues={{
         name: "",
         email: "",
-        contact: "",
+        bike: "",
+        fare: "",
+        pickup: "",
+        dropof: "",
+        travel: "",
         citizen: "",
         liscense: "",
-        bike: "",
-        rent: "",
-        pick: "",
-        drop: "",
-        days: "",
-        travel: "",
+        contact: "",
+        dropdate: "",
       }}
       validationSchema={Yup.object({
         name: Yup.string()
           .min(2, "Must be 2 characters or more")
           .required("Required!!"),
 
-        contact: Yup.string()
-          .min(10, "Must be 10 characters")
-          .required("Required!!"),
-
         email: Yup.string()
           .email("Invalid email addresss")
           .required("Required!!"),
 
+        fare: Yup.number().required("Required!!"),
+
+        bike: Yup.string().required("Required!!"),
+        pickup: Yup.mixed().required("Required!!"),
+        dropof: Yup.mixed().required("Required!!"),
+        dropdate: Yup.string().required("Required!!"),
+        travel: Yup.string().required("Required!!"),
+        contact: Yup.number().required("Required!!"),
         citizen: Yup.number().required("Required!!"),
         liscense: Yup.number().required("Required!!"),
-        bike: Yup.string().required("Required!!"),
-        pick: Yup.string().required("Required!!"),
-        drop: Yup.string().required("Required!!"),
-        days: Yup.string()
-          .min(1, "Must be 1 characters")
-          .required("Required!!"),
-        travel: Yup.string().required("Required!!"),
       })}
       onSubmit={(values, { setSubmitting, resetForm }) => {
-        const postData = new FormData();
-        postData.append("user_detail[name]", values.name);
-        postData.append("user_detail[contact]", values.contact);
-        postData.append("user_detail[email]", values.email);
-        postData.append("user_detail[citizen]", values.citizen);
-        postData.append("user_detail[liscense]", values.liscense);
-        postData.append("user_detail[bike]", values.bike);
+        UserData({
+          customerInfo: {
+            email: values.email,
+            pickupTime: values.travel + " " + values.pickup,
+            arrivalTime: values.dropdate + " " + values.dropof,
+            travelDate: values.travel,
+            bikeNumber: values.bike,
+            name: values.name,
+            fare: values.fare,
+            dropDate: values.dropdate,
+            citizen: values.citizen,
+            liscense: values.liscense,
+            contact: values.contact,
+          },
+        }).then((res) => {
+          if (
+            values.successMessage ===
+            "Sorry!! Pick Up time cannot be after drop off"
+          ) {
+            alert("request failed");
+            successMessage("Form submitted successfully !");
 
-        // Contactus(postData).then((res) => {
-        //   if (res.data.status === 200) {
-        //     successMessage("Form submitted successfully !");
-
-        //     setIsCheck(true);
-        //     setTimeout(() => {
-        //       setIsCheck(false);
-        //     }, 5000);
-        //     resetForm({
-        //       values: {
-        //         name: "",
-        //         address: "",
-        //         contact: "",
-        //         email: "",
-        //         message: "",
-        //       },
-        //     });
-        //   } else {
-        //     errorMessage(res.data.message);
-        //   }
-        // });
+            setIsCheck(true);
+            setTimeout(() => {
+              setIsCheck(false);
+            }, 5000);
+            resetForm({
+              values: {
+                name: "",
+                email: "",
+                bike: "",
+                pick: "",
+                drop: "",
+                days: "",
+                travel: "",
+              },
+            });
+          } else {
+            errorMessage(res.data.message);
+          }
+          errorMessage("request failed");
+        });
         setSubmitting(false);
       }}
     >
@@ -118,6 +129,78 @@ export const UserForm = () => {
                 </div>
                 <div className="input-box">
                   <label className="d-column">
+                    <span className="label-text">Bike No:</span>
+                    <Field
+                      name="bike"
+                      type="number"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="bike" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Citizenship No:</span>
+                    <Field
+                      name="citizen"
+                      type="number"
+                      pattern="^[0-9]*$"
+                      maxLength="10"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="citizen" />
+                    </span>
+                  </label>
+                </div>
+                {/* <div className="form-group">
+                  <div className="d-flex">
+                    <div className="check-box">
+                      <label>
+                        <Field name="rent" type="checkbox" />
+                        <div className="custom-check"></div>
+                        <span className="content"> Rent Now</span>
+                      </label>
+                    </div>
+                  </div>
+                  <span className="error">
+                    <ErrorMessage name="rent" />
+                  </span>
+                </div> */}
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Travel date :</span>
+                    <Field
+                      name="travel"
+                      type="date"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="travel" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Drop off date :</span>
+                    <Field
+                      name="dropdate"
+                      type="date"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="dropdate" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
                     <span className="label-text">Contact:</span>
                     <Field
                       name="contact"
@@ -148,25 +231,21 @@ export const UserForm = () => {
                     </span>
                   </label>
                 </div>
+
                 <div className="input-box">
                   <label className="d-column">
-                    <span className="label-text">Citizenship No:</span>
+                    <span className="label-text">Fare:</span>
                     <Field
-                      name="citizen"
+                      name="fare"
                       type="number"
-                      pattern="^[0-9]*$"
-                      maxLength="10"
-                      placeholder="Enter contact"
+                      placeholder="Enter fare"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="citizen" />
+                      <ErrorMessage name="fare" />
                     </span>
                   </label>
                 </div>
-              </div>
-
-              <div className="col-lg-6 col-sm-6 col-md-6">
                 <div className="input-box">
                   <label className="d-column">
                     <span className="label-text">Liscense No:</span>
@@ -183,6 +262,7 @@ export const UserForm = () => {
                     </span>
                   </label>
                 </div>
+
                 <div className="input-box">
                   <label className="d-column">
                     <span className="label-text">Pick up time :</span>
@@ -194,6 +274,20 @@ export const UserForm = () => {
                     />
                     <span className="error">
                       <ErrorMessage name="pickup" />
+                    </span>
+                  </label>
+                </div>
+                <div className="input-box">
+                  <label className="d-column">
+                    <span className="label-text">Drop-off-time :</span>
+                    <Field
+                      name="dropof"
+                      type="time"
+                      placeholder="Enter contact"
+                      className="input-field"
+                    />
+                    <span className="error">
+                      <ErrorMessage name="dropof" />
                     </span>
                   </label>
                 </div>
@@ -213,64 +307,6 @@ export const UserForm = () => {
                     </span>
                   </label>
                 </div>
-                <div className="form-group">
-                  <div className="d-flex">
-                    <div className="check-box">
-                      <label>
-                        <Field name="rent" type="checkbox" />
-                        <div className="custom-check"></div>
-                        <span className="content"> Rent Now</span>
-                      </label>
-                    </div>
-                  </div>
-                  <span className="error">
-                    <ErrorMessage name="rent" />
-                  </span>
-                </div>
-              </div>
-              <div className="col-lg-6 col-sm-6 col-md-6">
-                <div className="input-box">
-                  <label className="d-column">
-                    <span className="label-text">Bike No:</span>
-                    <Field
-                      name="bike"
-                      type="text"
-                      placeholder="Enter contact"
-                      className="input-field"
-                    />
-                    <span className="error">
-                      <ErrorMessage name="bike" />
-                    </span>
-                  </label>
-                </div>
-                <div className="input-box">
-                  <label className="d-column">
-                    <span className="label-text">Drop-off-time :</span>
-                    <Field
-                      name="drop-of"
-                      type="time"
-                      placeholder="Enter contact"
-                      className="input-field"
-                    />
-                    <span className="error">
-                      <ErrorMessage name="drop-of" />
-                    </span>
-                  </label>
-                </div>
-                <div className="input-box">
-                  <label className="d-column">
-                    <span className="label-text">Travel date :</span>
-                    <Field
-                      name="travel"
-                      type="date"
-                      placeholder="Enter contact"
-                      className="input-field"
-                    />
-                    <span className="error">
-                      <ErrorMessage name="travel" />
-                    </span>
-                  </label>
-                </div>
               </div>
             </div>
             <div className="clearfix"></div>
@@ -284,7 +320,12 @@ export const UserForm = () => {
                 Close
               </button>
 
-              <button type="submit" className="main-btn" disabled={isCheck}>
+              <button
+                type="submit"
+                value="submit"
+                className="main-btn"
+                disabled={isCheck}
+              >
                 Submit
               </button>
             </div>

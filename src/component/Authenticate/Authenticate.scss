@@ -4,9 +4,12 @@
 .authenticate {
     background-image: url("../../assets/image/bckground.png");
     height: 100%;
+    margin: auto;
 
     .sign-block {
         padding: calc(100% - 97%) 0;
+        width: 50%;
+        margin: auto;
 
         .first-block {
             .title {

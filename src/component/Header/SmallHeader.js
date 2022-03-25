@@ -26,7 +26,7 @@ export const SmallHeader = (props) => {
             <>
               <p className="content text-acct">Already have an accout?</p>
               <p className="content sign-up">
-                <Link to="/sign-in">Sign In!!</Link>
+                <Link to="/">Sign In!!</Link>
               </p>
             </>
           ) : (

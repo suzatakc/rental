@@ -13,14 +13,19 @@ export const PopUp = () => {
           content: {
             border: 0,
             background: "white",
-            overflow: "auto",
             WebkitOverflowScrolling: "touch",
+            // overflow: "hidden",
+            marginBottom: "-20px",
+            marginTop: "-20px",
           },
         }}
         isOpen={isModalOpen}
         onRequestClose={closeModal}
       >
-        <UserForm />
+        <div className="user-form">
+          {" "}
+          <UserForm />
+        </div>
       </Modal>
     </div>
   );

@@ -1,4 +1,11 @@
 @import "../../styles/mixin";
 @import "../../styles/variable";
 
-.pop-up-section {}
+.pop-up-section {
+    .user-form {
+        .custom-card {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    }
+}
