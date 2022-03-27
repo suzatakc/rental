@@ -120,7 +120,7 @@ body {
         outline: none;
 
         &:focus {
-            border: 1px solid $pre-green;
+            border: 1px solid $pastel-blue;
         }
 
         &::placeholder {
@@ -284,6 +284,13 @@ button:focus {
 
 a {
     color: unset;
+}
+
+.input-field+.error {
+    .input-field {
+
+        border: 1px solid $red;
+    }
 }
 
 .error {

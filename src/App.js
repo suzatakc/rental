@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./component/Home/Home";
 import { BikesDetailsPage } from "./component/BikeDetailPage/BikeDetailPage";
 import { PopupContextProvider } from "./component/Context/PopupContext";
+import { UserTable } from "./component/UserTable/UserTable";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               </PopupContextProvider>
             }
           />
+          <Route path="/user-table" element={<UserTable />} />
         </Routes>
       </BrowserRouter>
     </>

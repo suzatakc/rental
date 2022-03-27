@@ -43,15 +43,16 @@ export const UserForm = () => {
         fare: Yup.number().required("Required!!"),
 
         bike: Yup.string().required("Required!!"),
-        pickup: Yup.mixed().required("Required!!"),
-        dropof: Yup.mixed().required("Required!!"),
-        dropdate: Yup.string().required("Required!!"),
-        travel: Yup.string().required("Required!!"),
+        // pickup: Yup.mixed().required("Required!!"),
+        // dropof: Yup.mixed().required("Required!!"),
+        // dropdate: Yup.string().required("Required!!"),
+        // travel: Yup.string().required("Required!!"),
         contact: Yup.number().required("Required!!"),
         citizen: Yup.number().required("Required!!"),
         liscense: Yup.number().required("Required!!"),
       })}
       onSubmit={(values, { setSubmitting, resetForm }) => {
+        console.log("asdfg");
         UserData({
           customerInfo: {
             email: values.email,
@@ -67,32 +68,24 @@ export const UserForm = () => {
             contact: values.contact,
           },
         }).then((res) => {
-          if (
-            values.successMessage ===
-            "Sorry!! Pick Up time cannot be after drop off"
-          ) {
-            alert("request failed");
-            successMessage("Form submitted successfully !");
+          alert(res.data.success);
+          successMessage("Form submitted successfully !");
 
-            setIsCheck(true);
-            setTimeout(() => {
-              setIsCheck(false);
-            }, 5000);
-            resetForm({
-              values: {
-                name: "",
-                email: "",
-                bike: "",
-                pick: "",
-                drop: "",
-                days: "",
-                travel: "",
-              },
-            });
-          } else {
-            errorMessage(res.data.message);
-          }
-          errorMessage("request failed");
+          setIsCheck(true);
+          setTimeout(() => {
+            setIsCheck(false);
+          }, 5000);
+          resetForm({
+            values: {
+              name: "",
+              email: "",
+              bike: "",
+              pick: "",
+              drop: "",
+              days: "",
+              travel: "",
+            },
+          });
         });
         setSubmitting(false);
       }}

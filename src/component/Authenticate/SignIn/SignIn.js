@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const SignIn = () => {
   const { errorMessage } = useContext(ToasterContext);
   let history = useNavigate();
+  var myBoolean = true;
 
   const checkIsAdmin = (data) => {
     const splitedData = data.split(",");
@@ -47,17 +48,23 @@ export const SignIn = () => {
                       password: values.password,
                       is_admin: values.is_admin,
                     }).then((res) => {
+                      debugger;
+                      myBoolean = true;
                       alert(res.data);
                       const isAdmin = checkIsAdmin(res.data);
                       if (isAdmin) {
-                        history("/");
+                        history("/user-table");
                       } else {
                         history("/home");
                       }
 
                       errorMessage("request failed");
                     });
+                    debugger;
                     setSubmitting(false);
+                    if (!myBoolean) {
+                      alert("alert failed");
+                    }
                   }}
                 >
                   <Form>

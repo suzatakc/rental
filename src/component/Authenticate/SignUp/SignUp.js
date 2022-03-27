@@ -23,7 +23,7 @@ export const SignUp = () => {
                 <Formik
                   initialValues={{
                     name: "",
-                    // password: "",
+                    password: "",
                     email: "",
                     balance: "",
                   }}
@@ -41,6 +41,7 @@ export const SignUp = () => {
                         name: values.name,
                         email: values.email,
                         balance: values.balance,
+                        password: values.password,
                       },
                     }).then((res) => {
                       if (res.email === values.email) {
@@ -50,34 +51,14 @@ export const SignUp = () => {
                         resetForm({
                           values: {
                             name: "",
-                            // password: "",
+                            password: "",
                             email: "",
                             balance: "",
                           },
                         });
                         history("/");
                       }
-                      if (res.data.status === 200) {
-                        successMessage("Form submitted successfully !");
-
-                        setIsCheck(true);
-                        setTimeout(() => {
-                          setIsCheck(false);
-                        }, 5000);
-                        resetForm({
-                          values: {
-                            name: "",
-                            // password: "",
-                            email: "",
-                            balance: "",
-                          },
-                        });
-                      } else {
-                        errorMessage(res.data.message);
-                      }
-                      errorMessage("request failed");
                     });
-                    setSubmitting(false);
                   }}
                 >
                   <Form>
@@ -110,22 +91,22 @@ export const SignUp = () => {
                         </span>
                       </label>
                     </div>
-                    {/* <div className="input-box">
-                          <label className="d-column">
-                            <span className="label-text">Password:</span>
-                            <Field
-                              className="input-field"
-                              type="password"
-                              name="empasswordail"
-                              placeholder="Enter your password"
-                            />
-                            <span className="error">
-                              <ErrorMessage name="password" />
-                            </span>
-                          </label>
-                        </div> */}
                     <div className="input-box">
                       <label className="d-column">
+                        <span className="label-text">Password:</span>
+                        <Field
+                          className="input-field"
+                          type="password"
+                          name="empasswordail"
+                          placeholder="Enter your password"
+                        />
+                        <span className="error">
+                          <ErrorMessage name="password" />
+                        </span>
+                      </label>
+                    </div>
+                    <div className="input-box">
+                      {/* <label className="d-column">
                         <span className="label-text">Balance:</span>
                         <Field
                           className="input-field"
@@ -138,7 +119,23 @@ export const SignUp = () => {
                         <span className="error">
                           <ErrorMessage name="balance" />
                         </span>
-                      </label>
+                      </label> */}
+                      <span className="label-text">Balance:</span>
+                      <select className="input-field">
+                        <option selected disabled>
+                          Select
+                        </option>
+                        <option>500</option>
+                        <option>1000</option>
+                        <option>1500</option>
+                        <option>2000</option>
+                        <option>2500</option>
+                        <option>3000</option>
+                        <option>3500</option>
+                        <option>4000</option>
+                        <option>4500</option>
+                        <option>5000</option>
+                      </select>
                     </div>
 
                     <div className="d-end button-gap">
