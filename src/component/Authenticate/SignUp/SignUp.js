@@ -1,16 +1,11 @@
 import { SmallHeader } from "../../Header/SmallHeader";
-import { SecondBlock } from "../SecondBlock/SecondBlock";
 import "../../Authenticate/Authenticate.scss";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useContext, useState } from "react";
-import { ToasterContext } from "../../Context/ToasterContext";
 import { CustomerData } from "../../Api/PostApi";
 import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
-  const { successMessage, errorMessage } = useContext(ToasterContext);
-  const [isCheck, setIsCheck] = useState(true);
   const history = useNavigate();
   return (
     <>
@@ -29,7 +24,7 @@ export const SignUp = () => {
                   }}
                   validationSchema={Yup.object({
                     name: Yup.string().required("Required!!"),
-                    // password: Yup.string().required("Required!!"),
+                    password: Yup.string().required("Required!!"),
                     balance: Yup.string().required("Required!!"),
                     email: Yup.string()
                       .email("Invalid email addresss")
@@ -97,7 +92,7 @@ export const SignUp = () => {
                         <Field
                           className="input-field"
                           type="password"
-                          name="empasswordail"
+                          name="password"
                           placeholder="Enter your password"
                         />
                         <span className="error">
