@@ -200,7 +200,6 @@ export const BikesDetailsPage = () => {
         </div>
         <div className="row">
           {bikesDetails?.map((item, index) => {
-            debugger;
             return (
               <div className="col-md-4 col-sm-4 col-lg-4" key={index}>
                 <div className="custom-card">

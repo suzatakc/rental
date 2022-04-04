@@ -21,6 +21,7 @@ export const SignUp = () => {
                     password: "",
                     email: "",
                     balance: "",
+                    phone_number: "",
                   }}
                   validationSchema={Yup.object({
                     name: Yup.string().required("Required!!"),
@@ -29,14 +30,16 @@ export const SignUp = () => {
                     email: Yup.string()
                       .email("Invalid email addresss")
                       .required("Required!!"),
+                    phone_number: Yup.string().required("Required!!"),
                   })}
-                  onSubmit={(values, { setSubmitting, resetForm }) => {
+                  onSubmit={(values, { resetForm }) => {
                     CustomerData({
                       addAccount: {
                         name: values.name,
                         email: values.email,
                         balance: values.balance,
                         password: values.password,
+                        phone_number: values.phone_number,
                       },
                     }).then((res) => {
                       if (res.email === values.email) {
@@ -120,17 +123,31 @@ export const SignUp = () => {
                         <option selected disabled>
                           Select
                         </option>
-                        <option>500</option>
-                        <option>1000</option>
-                        <option>1500</option>
-                        <option>2000</option>
-                        <option>2500</option>
-                        <option>3000</option>
-                        <option>3500</option>
-                        <option>4000</option>
-                        <option>4500</option>
-                        <option>5000</option>
+                        <option value={"one"}>500</option>
+                        <option value={"two"}>1000</option>
+                        <option value={"three"}>1500</option>
+                        <option value={"four"}>2000</option>
+                        <option value={"five"}>2500</option>
+                        <option value={"six"}>3000</option>
+                        <option value={"seven"}>3500</option>
+                        <option value={"eight"}>4000</option>
+                        <option value={"nine"}>4500</option>
+                        <option value={"ten"}>5000</option>
                       </select>
+                    </div>
+                    <div className="input-box">
+                      <label className="d-column">
+                        <span className="label-text">Phone number:</span>
+                        <Field
+                          className="input-field"
+                          type="number"
+                          name="phone_number"
+                          placeholder="Enter your password"
+                        />
+                        <span className="error">
+                          <ErrorMessage name="phone_number" />
+                        </span>
+                      </label>
                     </div>
 
                     <div className="d-end button-gap">

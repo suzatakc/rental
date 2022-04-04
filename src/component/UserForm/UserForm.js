@@ -7,7 +7,7 @@ import { ToasterContext } from "../Context/ToasterContext";
 import { UserData } from "../Api/PostApi";
 
 export const UserForm = () => {
-  const { successMessage, errorMessage } = useContext(ToasterContext);
+  const { successMessage } = useContext(ToasterContext);
   const [isCheck, setIsCheck] = useState(true);
 
   useEffect(() => {
@@ -124,13 +124,13 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Bike No:</span>
                     <Field
-                      name="bike"
+                      name="bikeNumber"
                       type="number"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="bike" />
+                      <ErrorMessage name="bikeNumber" />
                     </span>
                   </label>
                 </div>
@@ -138,7 +138,7 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Citizenship No:</span>
                     <Field
-                      name="citizen"
+                      name="citizenNumber"
                       type="number"
                       pattern="^[0-9]*$"
                       maxLength="10"
@@ -146,7 +146,7 @@ export const UserForm = () => {
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="citizen" />
+                      <ErrorMessage name="citizenNumber" />
                     </span>
                   </label>
                 </div>
@@ -168,13 +168,13 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Travel date :</span>
                     <Field
-                      name="travel"
+                      name="travel_date"
                       type="date"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="travel" />
+                      <ErrorMessage name="travel_date" />
                     </span>
                   </label>
                 </div>
@@ -284,7 +284,7 @@ export const UserForm = () => {
                     </span>
                   </label>
                 </div>
-                <div className="input-box">
+                {/* <div className="input-box">
                   <label className="d-column">
                     <span className="label-text">No of days :</span>
                     <Field
@@ -299,7 +299,7 @@ export const UserForm = () => {
                       <ErrorMessage name="days" />
                     </span>
                   </label>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="clearfix"></div>

@@ -40,7 +40,7 @@ export const SignIn = () => {
                       .email("Invalid email addresss")
                       .required("Required!!"),
                   })}
-                  onSubmit={(values, { setSubmitting, resetForm }) => {
+                  onSubmit={(values) => {
                     console.log("onsubmit");
                     SignInData({
                       email: values.email,
@@ -51,12 +51,12 @@ export const SignIn = () => {
                       const isAdmin = checkIsAdmin(res.data);
                       if (isAdmin) {
                         history("/user-table");
+                      } else if (res.data === "Invalid Username and password") {
+                        history("/");
                       } else {
                         history("/home");
                       }
-                      errorMessage("request failed");
                     });
-                    setSubmitting(false);
                   }}
                 >
                   <Form>

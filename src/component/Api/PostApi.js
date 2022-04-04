@@ -9,5 +9,5 @@ export const UserData = (data) => {
   return axios.post(domain + "/bikeBookingSystem/", data);
 };
 export const SignInData = (data) => {
-  return axios.post(domain + "/sign-in/", data);
+  return axios.post(domain + "/bikeBookingSystem/signin/", data);
 };
