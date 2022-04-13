@@ -28,12 +28,47 @@
             border-radius: 50%;
             height: 30px;
             width: 30px;
+            @include d-center;
+            color: white;
 
             img {
                 height: 30px;
                 width: 30px;
                 border-radius: 50%;
                 object-fit: cover;
+            }
+        }
+
+        .wrapper {
+            position: relative;
+            cursor: pointer;
+
+            .menu {
+                position: absolute;
+                top: 40px;
+                left: -35px;
+                z-index: 22;
+                padding: 0;
+                border-radius: 3px;
+
+                a {
+                    text-decoration: none;
+
+                    &:hover {
+                        border-radius: 3px;
+                    }
+                }
+
+                .dropdown-item.active,
+                .dropdown-item:active {
+                    background-color: none !important;
+                }
+            }
+
+            .dropdown-toggle::after {
+                position: absolute;
+                left: 30px;
+                color: $pre-green;
             }
         }
     }

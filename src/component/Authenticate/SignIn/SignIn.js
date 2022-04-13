@@ -31,7 +31,6 @@ export const SignIn = () => {
                   initialValues={{
                     email: "",
                     password: "",
-                    is_admin: "",
                   }}
                   validationSchema={Yup.object({
                     password: Yup.string().required("Required!!"),
@@ -43,18 +42,21 @@ export const SignIn = () => {
                   onSubmit={(values) => {
                     console.log("onsubmit");
                     SignInData({
-                      email: values.email,
-                      password: values.password,
-                      is_admin: values.is_admin,
+                      signIn: {
+                        email: values.email,
+                        password: values.password,
+                        isAdmin: values.isAdmin,
+                      },
                     }).then((res) => {
                       alert(res.data);
-                      const isAdmin = checkIsAdmin(res.data);
-                      if (isAdmin) {
-                        history("/user-table");
-                      } else if (res.data === "Invalid Username and password") {
+                      if (res.data === "Invalid Username and password!!!") {
                         history("/");
-                      } else {
+                      } else if (res.data === "Sign in successful!!!") {
                         history("/home");
+                      } else if (res.data === "admin,true") {
+                        history("/admin");
+                      } else {
+                        history("/");
                       }
                     });
                   }}
@@ -89,21 +91,17 @@ export const SignIn = () => {
                         </span>
                       </label>
                     </div>
-                    <div className="d-end">
-                      {/* <div className="check-box">
+                    <div className="d-space-between">
+                      <div className="check-box">
                         <label>
-                          <Field
-                            type="checkbox"
-                            name="is_admin"
-                            // value="Remember me"
-                          />
+                          <Field type="checkbox" name="isAdmin" />
                           <div className="custom-check"></div>
                           <span className="content"> Is Admin</span>
                           <span className="error">
-                            <ErrorMessage name="is_admin" />
+                            <ErrorMessage name="isAdmin" />
                           </span>
                         </label>
-                      </div> */}
+                      </div>
                       <div className="content">Forgot Password?</div>
                     </div>
                     <div className="d-end button-gap">

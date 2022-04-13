@@ -20,41 +20,37 @@ export const SignUp = () => {
                     name: "",
                     password: "",
                     email: "",
-                    balance: "",
-                    phone_number: "",
+                    phoneNumber: "",
                   }}
                   validationSchema={Yup.object({
                     name: Yup.string().required("Required!!"),
                     password: Yup.string().required("Required!!"),
-                    balance: Yup.string().required("Required!!"),
+                    balance: Yup.number().required("Required!!"),
                     email: Yup.string()
                       .email("Invalid email addresss")
                       .required("Required!!"),
-                    phone_number: Yup.string().required("Required!!"),
+                    phoneNumber: Yup.string().required("Required!!"),
                   })}
-                  onSubmit={(values, { resetForm }) => {
+                  onSubmit={(values, resetForm) => {
                     CustomerData({
                       addAccount: {
                         name: values.name,
                         email: values.email,
                         balance: values.balance,
                         password: values.password,
-                        phone_number: values.phone_number,
+                        phoneNumber: values.phoneNumber,
                       },
                     }).then((res) => {
-                      if (res.email === values.email) {
-                        alert("Email already exist");
-                      } else {
-                        alert("Form submitted successfully !");
-                        resetForm({
-                          values: {
-                            name: "",
-                            password: "",
-                            email: "",
-                            balance: "",
-                          },
-                        });
+                      if (res.data === "Number must be of 10 digits") {
+                        alert(res.data);
+                      } else if (
+                        res.data === "admin,true" ||
+                        res.data === "admin,false"
+                      ) {
+                        alert("signup sucessful");
                         history("/");
+                      } else {
+                        alert(res.data);
                       }
                     });
                   }}
@@ -104,36 +100,32 @@ export const SignUp = () => {
                       </label>
                     </div>
                     <div className="input-box">
-                      {/* <label className="d-column">
+                      <label className="d-column">
                         <span className="label-text">Balance:</span>
                         <Field
+                          as="select"
                           className="input-field"
                           pattern="^[0-9]*$"
                           maxLength="10"
                           type="number"
                           name="balance"
-                          placeholder="Enter your balance"
-                        />
+                        >
+                          <option disabled>Select</option>
+                          <option value={500}>500</option>
+                          <option value={1000}>1000</option>
+                          <option value={1500}>1500</option>
+                          <option value={2000}>2000</option>
+                          <option value={2500}>2500</option>
+                          <option value={3000}>3000</option>
+                          <option value={3500}>3500</option>
+                          <option value={4000}>4000</option>
+                          <option value={4500}>4500</option>
+                          <option value={5000}>5000</option>
+                        </Field>
                         <span className="error">
                           <ErrorMessage name="balance" />
                         </span>
-                      </label> */}
-                      <span className="label-text">Balance:</span>
-                      <select className="input-field">
-                        <option selected disabled>
-                          Select
-                        </option>
-                        <option value={"one"}>500</option>
-                        <option value={"two"}>1000</option>
-                        <option value={"three"}>1500</option>
-                        <option value={"four"}>2000</option>
-                        <option value={"five"}>2500</option>
-                        <option value={"six"}>3000</option>
-                        <option value={"seven"}>3500</option>
-                        <option value={"eight"}>4000</option>
-                        <option value={"nine"}>4500</option>
-                        <option value={"ten"}>5000</option>
-                      </select>
+                      </label>
                     </div>
                     <div className="input-box">
                       <label className="d-column">
@@ -141,11 +133,11 @@ export const SignUp = () => {
                         <Field
                           className="input-field"
                           type="number"
-                          name="phone_number"
+                          name="phoneNumber"
                           placeholder="Enter your password"
                         />
                         <span className="error">
-                          <ErrorMessage name="phone_number" />
+                          <ErrorMessage name="phoneNumber" />
                         </span>
                       </label>
                     </div>

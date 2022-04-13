@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 export const Navbar = () => {
+  const [show, setshow] = useState(false);
   return (
     <div className="nav-bar">
       <nav className="navbar navbar-expand-lg navbar-light ">
@@ -16,11 +18,9 @@ export const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
         <div className="logo">
           <img src={require("../../assets/image/logo.png")} alt="logo" />
         </div>
-
         <div
           className="collapse navbar-collapse justify-content-center"
           id="navbarTogglerDemo03"
@@ -49,39 +49,16 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
-
-        {/* <div class="dropdown">
-          <div
-            className="user-info dropdown-toggle"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img src={require("../../assets/image/hiking.png")} alt="user" />
+        <div className="wrapper d-column">
+          <div class="dropdown" onClick={() => setshow(!show)}>
+            <div className="user-info dropdown-toggle">
+              <img src={require("../../assets/image/hiking.png")} alt="user" />
+            </div>
           </div>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link class="dropdown-item" to="/">
-              Logout
-            </Link>
-          </div>
-        </div> */}
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Dropdown button
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">
-              Action
-            </a>
-          </div>
+          display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
         </div>
       </nav>
     </div>

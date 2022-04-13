@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
 
 export const AdminHeader = () => {
+  const [show, setshow] = useState(false);
+
   return (
     <div>
       <div className="nav-bar">
@@ -33,31 +36,48 @@ export const AdminHeader = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/bikes">
+                <Link className="nav-link " to="/add-account">
                   Sign Up Account
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/policy">
+                <Link className="nav-link " to="/bike-detail">
                   {" "}
                   Bike Details
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/contact">
+                <Link className="nav-link " to="/customer-info">
                   Customer Detail
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link className="nav-link " to="/contact">
+                <Link className="nav-link " to="/booking-detail">
                   Booking Detail
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="user-info">
-            <img src={require("../../assets/image/hiking.png")} alt="user" />
+          <div className="wrapper d-column">
+            <div class="dropdown" onClick={() => setshow(!show)}>
+              <div className="user-info dropdown-toggle">
+                {/* <img
+                  src={require("../../assets/image/hiking.png")}
+                  alt="user"
+                /> */}
+                A
+              </div>
+            </div>
+            {show === true ? (
+              <div class="menu custom-card">
+                <Link class="dropdown-item" to="/">
+                  Logout
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </nav>
       </div>

@@ -18,43 +18,43 @@ export const OurBikes = () => {
   };
   const [bikes] = useState([
     {
-      name: "Honda Activa",
+      name: "Honda Hiness",
       no: "Ba Kha 1234",
       url: require("../../assets/image/honda.jpeg"),
     },
     {
       name: "KTM 790 Duke",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 5678",
       url: require("../../assets/image/ktm.jpeg"),
     },
     {
       name: "Royal Enfield",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1374",
       url: require("../../assets/image/royal.jpeg"),
     },
     {
       name: "Yamaha YFZ",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1524",
       url: require("../../assets/image/yamaha.jpeg"),
     },
     {
       name: "TVS Jupiter",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1904",
       url: require("../../assets/image/tvs.jpeg"),
     },
     {
       name: "Hero Splendor",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1884",
       url: require("../../assets/image/hero.jpeg"),
     },
     {
       name: "Bajaj Pulsar",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1224",
       url: require("../../assets/image/bajaj.jpeg"),
     },
     {
       name: "Suzuki",
-      no: "Ba Kha 1234",
+      no: "Ba Kha 1255",
       url: require("../../assets/image/suzuki.jpeg"),
     },
   ]);

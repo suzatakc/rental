@@ -4,7 +4,7 @@ import "./UserForm.scss";
 import * as Yup from "yup";
 import { PopupContext } from "../Context/PopupContext";
 import { ToasterContext } from "../Context/ToasterContext";
-import { UserData } from "../Api/PostApi";
+import { getBikeDetail } from "../Api/PostApi";
 
 export const UserForm = () => {
   const { successMessage } = useContext(ToasterContext);
@@ -21,15 +21,15 @@ export const UserForm = () => {
       initialValues={{
         name: "",
         email: "",
-        bike: "",
+        bikeNumber: "",
         fare: "",
-        pickup: "",
-        dropof: "",
-        travel: "",
-        citizen: "",
-        liscense: "",
+        citizenNumber: "",
+        liscenseNumber: "",
+        pickupTime: "",
+        pickupDate: "",
+        arrivalTime: "",
+        arrivalDate: "",
         contact: "",
-        dropdate: "",
       }}
       validationSchema={Yup.object({
         name: Yup.string()
@@ -42,30 +42,34 @@ export const UserForm = () => {
 
         fare: Yup.number().required("Required!!"),
 
-        bike: Yup.string().required("Required!!"),
-        // pickup: Yup.mixed().required("Required!!"),
-        // dropof: Yup.mixed().required("Required!!"),
-        // dropdate: Yup.string().required("Required!!"),
-        // travel: Yup.string().required("Required!!"),
-        contact: Yup.number().required("Required!!"),
-        citizen: Yup.number().required("Required!!"),
-        liscense: Yup.number().required("Required!!"),
+        bikeNumber: Yup.string().required("Required!!"),
+        pickupTime: Yup.mixed().required("Required!!"),
+        pickupDate: Yup.string().required("Required!!"),
+        arrivalTime: Yup.mixed().required("Required!!"),
+        arrivalDate: Yup.string().required("Required!!"),
+        contact: Yup.string().required("Required!!"),
+        citizenNumber: Yup.number().required("Required!!"),
+        liscenseNumber: Yup.number().required("Required!!"),
       })}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         console.log("asdfg");
-        UserData({
+        getBikeDetail({
           customerInfo: {
             email: values.email,
-            pickupTime: values.travel + " " + values.pickup,
-            arrivalTime: values.dropdate + " " + values.dropof,
-            travelDate: values.travel,
-            bikeNumber: values.bike,
+            pickupTime: values.pickupDate + " " + values.pickupTime,
+            arrivalTime: values.arrivalDate + " " + values.arrivalTime,
+            pickupDate: values.pickupDate,
+            bikeNumber: values.bikeNumber,
             name: values.name,
             fare: values.fare,
-            dropDate: values.dropdate,
-            citizen: values.citizen,
-            liscense: values.liscense,
+            arrivalDate: values.arrivalDate,
+            citizenNumber: values.citizenNumber,
+            liscenseNumber: values.liscenseNumber,
             contact: values.contact,
+          },
+          paymentInfo: {
+            accountNo: "df",
+            cardType: "dfg",
           },
         }).then((res) => {
           alert(res.data.success);
@@ -79,11 +83,11 @@ export const UserForm = () => {
             values: {
               name: "",
               email: "",
-              bike: "",
+              bikeNumber: "",
               pick: "",
               drop: "",
               days: "",
-              travel: "",
+              pickupDate: "",
             },
           });
         });
@@ -139,9 +143,7 @@ export const UserForm = () => {
                     <span className="label-text">Citizenship No:</span>
                     <Field
                       name="citizenNumber"
-                      type="number"
-                      pattern="^[0-9]*$"
-                      maxLength="10"
+                      type="text"
                       placeholder="Enter contact"
                       className="input-field"
                     />
@@ -166,15 +168,15 @@ export const UserForm = () => {
                 </div> */}
                 <div className="input-box">
                   <label className="d-column">
-                    <span className="label-text">Travel date :</span>
+                    <span className="label-text">Pick up date :</span>
                     <Field
-                      name="travel_date"
+                      name="pickupDate"
                       type="date"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="travel_date" />
+                      <ErrorMessage name="pickupDate" />
                     </span>
                   </label>
                 </div>
@@ -182,13 +184,13 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Drop off date :</span>
                     <Field
-                      name="dropdate"
+                      name="arrivalDate"
                       type="date"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="dropdate" />
+                      <ErrorMessage name="arrivalDate" />
                     </span>
                   </label>
                 </div>
@@ -243,7 +245,7 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Liscense No:</span>
                     <Field
-                      name="liscense"
+                      name="liscenseNumber"
                       type="number"
                       pattern="^[0-9]*$"
                       maxLength="10"
@@ -251,7 +253,7 @@ export const UserForm = () => {
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="liscense" />
+                      <ErrorMessage name="liscenseNumber" />
                     </span>
                   </label>
                 </div>
@@ -260,13 +262,13 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Pick up time :</span>
                     <Field
-                      name="pickup"
+                      name="pickupTime"
                       type="time"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="pickup" />
+                      <ErrorMessage name="pickupTime" />
                     </span>
                   </label>
                 </div>
@@ -274,32 +276,16 @@ export const UserForm = () => {
                   <label className="d-column">
                     <span className="label-text">Drop-off-time :</span>
                     <Field
-                      name="dropof"
-                      type="time"
+                      name="arrivalTime"
+                      type="number"
                       placeholder="Enter contact"
                       className="input-field"
                     />
                     <span className="error">
-                      <ErrorMessage name="dropof" />
+                      <ErrorMessage name="arrivalTime" />
                     </span>
                   </label>
                 </div>
-                {/* <div className="input-box">
-                  <label className="d-column">
-                    <span className="label-text">No of days :</span>
-                    <Field
-                      pattern="^[0-9]*$"
-                      maxLength="2"
-                      name="days"
-                      type="number"
-                      placeholder="Enter number of days for rent"
-                      className="input-field"
-                    />
-                    <span className="error">
-                      <ErrorMessage name="days" />
-                    </span>
-                  </label>
-                </div> */}
               </div>
             </div>
             <div className="clearfix"></div>

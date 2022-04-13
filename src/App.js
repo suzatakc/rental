@@ -7,6 +7,8 @@ import { Home } from "./component/Home/Home";
 import { BikesDetailsPage } from "./component/BikeDetailPage/BikeDetailPage";
 import { PopupContextProvider } from "./component/Context/PopupContext";
 import { UserTable } from "./component/UserTable/UserTable";
+import { AdminPage } from "./component/AdminPage/AdminPage";
+import { CustomerInfo } from "./component/CustomerInfo/CustomerInfo";
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
               </PopupContextProvider>
             }
           />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/user-table" element={<UserTable />} />
+          <Route path="/customer-info" element={<CustomerInfo />} />
         </Routes>
       </BrowserRouter>
     </>

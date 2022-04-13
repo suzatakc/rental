@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { BikeData } from "../Api/PostApi";
 import { PopupContext } from "../Context/PopupContext";
 import { PopUp } from "../PopUp/PopUp";
 import "./BikeDetailPage.scss";
@@ -22,159 +23,159 @@ export const BikesDetailsPage = () => {
     setSearchVal(event.target.value);
   };
 
-  // const [bikesDetails, setBikesDetails] = useState([]);
+  const [bikesDetails, setBikesDetails] = useState([]);
 
-  // useEffect(() => {
-  //   getBikeDetail().then((data) => {
-  //     setBikesDetails(data);
-  //   });
-  // }, []);
-  const [bikesDetails, setBikesDetails] = useState([
-    {
-      name: "Honda Hiness",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/honda.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "KTM 790 Duke",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/ktm.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Royal Enfield",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/royal.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Yamaha YFZ",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/yamaha.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "TVS Jupiter",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/tvs.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Hero Splendor",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/hero.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Bajaj Pulsar",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/bajaj.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Suzuki",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/suzuki.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Honda Activa",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/honda.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "KTM 790 Duke",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/ktm.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Royal Enfield",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/royal.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Yamaha YFZ",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/yamaha.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "TVS Jupiter",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/tvs.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Hero Splendor",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/hero.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Bajaj Pulsar",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/bajaj.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Suzuki",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/suzuki.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "TVS Jupiter",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/tvs.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-    {
-      name: "Hero Splendor",
-      no: "Ba Kha 1234",
-      url: require("../../assets/image/hero.jpeg"),
-      cc: "360",
-      km: "45",
-      kg: "180",
-    },
-  ]);
+  useEffect(() => {
+    BikeData().then((res) => {
+      setBikesDetails(res.data);
+    });
+  }, []);
+  // const [bikesDetails, setBikesDetails] = useState([
+  //   {
+  //     name: "Honda Hiness",
+  //     no: "Ba Kha 1234",
+  //     url: require("../../assets/image/honda.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "KTM 790 Duke",
+  //     no: "Ba Kha 5678",
+  //     url: require("../../assets/image/ktm.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Royal Enfield",
+  //     no: "Ba Kha 1374",
+  //     url: require("../../assets/image/royal.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Yamaha YFZ",
+  //     no: "Ba Kha 1524",
+  //     url: require("../../assets/image/yamaha.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "TVS Jupiter",
+  //     no: "Ba Kha 1904",
+  //     url: require("../../assets/image/tvs.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Hero Splendor",
+  //     no: "Ba Kha 1884",
+  //     url: require("../../assets/image/hero.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Bajaj Pulsar",
+  //     no: "Ba Kha 1224",
+  //     url: require("../../assets/image/bajaj.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Suzuki",
+  //     no: "Ba Kha 1255",
+  //     url: require("../../assets/image/suzuki.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Honda Activa",
+  //     no: "Ba Kha 1222",
+  //     url: require("../../assets/image/honda.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "KTM 790 Duke",
+  //     no: "Ba Kha 1333",
+  //     url: require("../../assets/image/ktm.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Royal Enfield",
+  //     no: "Ba Kha 1444",
+  //     url: require("../../assets/image/royal.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Yamaha YFZ",
+  //     no: "Ba Kha 1555",
+  //     url: require("../../assets/image/yamaha.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "TVS Jupiter",
+  //     no: "Ba Kha 1666",
+  //     url: require("../../assets/image/tvs.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Hero Splendor",
+  //     no: "Ba Kha 1777",
+  //     url: require("../../assets/image/hero.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Bajaj Pulsar",
+  //     no: "Ba Kha 1888",
+  //     url: require("../../assets/image/bajaj.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Suzuki",
+  //     no: "Ba Kha 1999",
+  //     url: require("../../assets/image/suzuki.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "TVS Jupiter",
+  //     no: "Ba Kha 1040",
+  //     url: require("../../assets/image/tvs.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  //   {
+  //     name: "Hero Splendor",
+  //     no: "Ba Kha 1390",
+  //     url: require("../../assets/image/hero.jpeg"),
+  //     cc: "360",
+  //     km: "45",
+  //     kg: "180",
+  //   },
+  // ]);
 
   const { openModal } = useContext(PopupContext);
   return (
